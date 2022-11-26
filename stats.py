@@ -59,6 +59,10 @@ def map_statistics(roads):
     (max_branch_factor, min_branch_factor, avg_branch_factor) = outgoing_branching_factor_calc(roads)
     (max_link_dist, min_link_dist, avg_link_dist) = __link_distances(roads)
     link_counter = __count_links(roads)
+    highway_types = []
+    for itr in roads.iterlinks():
+        highway_types.append(itr.highway_type)
+    highway_types.sort()
     '''return a dictionary containing the desired information
     You can edit this function as you wish'''
     Stat = namedtuple('Stat', ['max', 'min', 'avg'])
@@ -70,7 +74,7 @@ def map_statistics(roads):
         'Link distance': Stat(max=max_link_dist, min=min_link_dist, avg=avg_link_dist),
         # value should be a dictionary
         # mapping each road_info.TYPE to the no' of links of this type
-        'Link type histogram': collections.Counter(1 for x in range(15) for itr in roads.iterlinks() if itr.highway_type == x)
+        'Link type histogram': collections.Counter(highway_types).items()
         # tip: use collections.Counter
     }
 
