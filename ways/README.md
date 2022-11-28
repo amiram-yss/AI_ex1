@@ -1,5 +1,4 @@
-ways/
-Library for handling road map.
+ways/ Library for handling road map.
 
 Most of the work is done with one function, `load_map_from_csv`, and three classes: `Junction`, `Link` and `Roads`.
 
